@@ -101,11 +101,18 @@
     max-width:var(--max); margin:0 auto;
   }
   .brand{
-    display:flex; align-items:center; gap:10px;
+    display:grid; grid-template-columns:34px auto; align-items:center; gap:10px;
     font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
     color:var(--ink-050); text-decoration:none; letter-spacing:0.01em;
   }
-  .brand svg{ width:26px; height:26px; flex-shrink:0; }
+  .brand-logo{
+    width:34px; height:34px; flex-shrink:0;
+    display:grid; place-items:center;
+  }
+  .brand-logo img{
+    width:100%; height:100%; object-fit:contain; display:block;
+  }
+  .brand-label{ display:flex; align-items:center; height:34px; line-height:1; }
 
   nav.links{ display:flex; gap:36px; }
   nav.links a{
@@ -205,8 +212,15 @@
   }
   .btn-ghost:hover{ border-color:var(--brass-500); background:rgba(190,154,70,0.08); }
 
-  .compass-wrap{ display:flex; justify-content:center; }
-  #compass{ width:min(340px, 90%); transform-origin:50% 50%; }
+  .hero-emblem{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; }
+  .hero-emblem img{
+    width:min(350px, 86vw); aspect-ratio:1; object-fit:contain;
+    filter:drop-shadow(0 18px 32px rgba(0,0,0,0.32));
+  }
+  .hero-emblem figcaption{
+    max-width:34ch; text-align:center; font-size:0.76rem;
+    color:rgba(237,231,216,0.55); line-height:1.5;
+  }
 
   .hero-coords{
     position:absolute; bottom:22px; left:32px;
@@ -252,6 +266,28 @@
   .waypoint h3{ font-size:1.2rem; margin-bottom:6px; }
   .waypoint p{ margin:0; color:rgba(20,24,31,0.72); max-width:60ch; }
   .waypoint .wp-meta{ font-size:0.85rem; color:var(--brass-700); margin-bottom:4px; }
+  .requirements{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    margin-bottom:56px; border:1px solid var(--line-on-parchment);
+    background:var(--line-on-parchment);
+  }
+  .requirement{ background:var(--parchment-50); padding:24px 20px; }
+  .requirement strong{ display:block; font-family:'Fraunces',serif; font-size:1.12rem; margin-bottom:6px; }
+  .requirement span{ display:block; color:rgba(20,24,31,0.68); font-size:0.86rem; line-height:1.55; }
+  .route-title{ margin-bottom:30px; }
+  .route-title .section-tag{ margin-bottom:6px; }
+  .route-title h3{ font-size:clamp(1.35rem,2.4vw,1.8rem); }
+  .exam-days{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:12px; max-width:700px; }
+  .exam-day{ padding:10px 12px; background:var(--parchment-100); border-left:2px solid var(--brass-500); font-size:0.84rem; color:rgba(20,24,31,0.72); }
+  .exam-day strong{ color:var(--ink-900); }
+  .official-links{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:44px 0 0 36px; }
+  .official-links .btn-ghost{ color:var(--ink-900); border-color:var(--line-on-parchment); }
+  .official-links p{ width:100%; font-size:0.8rem; color:rgba(20,24,31,0.58); }
+  @media (max-width:860px){ .requirements{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){
+    .requirements, .exam-days{ grid-template-columns:1fr; }
+    .official-links{ margin-left:0; }
+  }
 
   /* ===== DISCIPLINAS ===== */
   .subjects{
@@ -315,6 +351,32 @@
   }
   .coupon-chip:hover{ background:var(--navy-800); }
   .coupon-chip.copied{ border-color:var(--signal-500); color:var(--signal-500); }
+  .partner-card.featured{ grid-column:1 / -1; gap:22px; }
+  .partner-profile{ display:flex; align-items:center; gap:20px; }
+  .partner-logo{
+    width:104px; height:104px; flex-shrink:0; object-fit:contain;
+    background:#fff; border:1px solid var(--line-on-parchment); padding:8px;
+  }
+  .course-list{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  .course-link{
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    min-height:58px; padding:12px 14px; color:var(--ink-900); text-decoration:none;
+    border:1px solid var(--line-on-parchment); background:var(--parchment-100);
+    font-size:0.88rem; font-weight:600; transition:border-color .2s ease, background .2s ease;
+  }
+  .course-link:hover{ border-color:var(--brass-500); background:var(--parchment-50); }
+  .course-link span:last-child{ color:var(--brass-700); font-size:0.72rem; white-space:nowrap; }
+  .coupon-steps{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    border:1px solid var(--line-on-parchment); background:var(--line-on-parchment);
+  }
+  .coupon-step{ background:var(--parchment-50); padding:14px; font-size:0.83rem; color:rgba(20,24,31,0.72); }
+  .coupon-step strong{ display:block; color:var(--brass-700); margin-bottom:4px; }
+  @media (max-width:680px){
+    .partner-profile{ align-items:flex-start; }
+    .partner-logo{ width:82px; height:82px; }
+    .course-list, .coupon-steps{ grid-template-columns:1fr; }
+  }
 
   /* ===== CUPONS DESTAQUE ===== */
   .coupon-strip{
@@ -425,11 +487,8 @@
 <header class="site-nav" id="siteNav">
   <div class="nav-inner">
     <a class="brand" href="#top">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="12" cy="12" r="10.5" stroke="#BE9A46" stroke-width="1.2"/>
-        <path d="M12 3.5 L13.4 10.6 L20.5 12 L13.4 13.4 L12 20.5 L10.6 13.4 L3.5 12 L10.6 10.6 Z" fill="#BE9A46"/>
-      </svg>
-      EFOMM · Preparação
+      <span class="brand-logo" aria-hidden="true"><img src="assets/plantel-logo-nav.png" alt=""></span>
+      <span class="brand-label">Plantel de Dúvidas</span>
     </a>
     <nav class="links" aria-label="Navegação principal">
       <a href="#concurso">O Concurso</a>
@@ -459,36 +518,18 @@
   <section class="hero" id="top">
     <div class="wrap hero-grid">
       <div>
-        <div class="hero-eyebrow">Escola de Formação da Marinha Mercante</div>
-        <h1>A rota certa até o <em>convés</em> da EFOMM.</h1>
-        <p class="lede">Um ponto de partida único para quem se prepara para o concurso: disciplinas organizadas, parceiros por área e os cupons certos na hora certa — sem se perder no meio do caminho.</p>
+        <div class="hero-eyebrow">Preparação para a Escola de Formação de Oficiais da Marinha Mercante</div>
+        <h1>Plantel de <em>Dúvidas.</em></h1>
+        <p class="lede">Sua rota de preparação para a EFOMM: disciplinas organizadas, parceiros por área, comunidade de apoio e os cupons certos na hora certa.</p>
         <div class="hero-actions">
           <a class="btn-primary" href="#parceiros">Encontrar parceiros</a>
           <a class="btn-ghost" href="#concurso">Entender o concurso</a>
         </div>
       </div>
-      <div class="compass-wrap">
-        <svg id="compass" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="150" cy="150" r="128" stroke="#BE9A46" stroke-width="1" fill="none" opacity="0.55"/>
-          <circle cx="150" cy="150" r="96" stroke="#BE9A46" stroke-width="1" fill="none" opacity="0.35"/>
-          <g stroke="#BE9A46" stroke-width="0.6" opacity="0.4">
-            <line x1="150" y1="22" x2="150" y2="278"/>
-            <line x1="22" y1="150" x2="278" y2="150"/>
-            <line x1="58" y1="58" x2="242" y2="242"/>
-            <line x1="242" y1="58" x2="58" y2="242"/>
-          </g>
-          <g id="rose-rotor">
-            <path d="M150 40 L162 150 L150 260 L138 150 Z" fill="#D4B466"/>
-            <path d="M40 150 L150 138 L260 150 L150 162 Z" fill="#8F7230"/>
-            <path d="M150 40 L150 150 L260 150 Z" fill="#EDE7D8" opacity="0.85"/>
-            <circle cx="150" cy="150" r="7" fill="#EDE7D8"/>
-          </g>
-          <text x="150" y="30" text-anchor="middle" fill="#EDE7D8" font-family="Work Sans" font-size="13">N</text>
-          <text x="150" y="278" text-anchor="middle" fill="#EDE7D8" font-family="Work Sans" font-size="13">S</text>
-          <text x="14" y="155" text-anchor="middle" fill="#EDE7D8" font-family="Work Sans" font-size="13">O</text>
-          <text x="286" y="155" text-anchor="middle" fill="#EDE7D8" font-family="Work Sans" font-size="13">L</text>
-        </svg>
-      </div>
+      <figure class="hero-emblem">
+        <img src="assets/efomm-emblem.png" alt="Emblema da Escola de Formação de Oficiais da Marinha Mercante">
+        <figcaption>Preparação voltada à EFOMM. Projeto independente, sem vínculo oficial com a Marinha do Brasil.</figcaption>
+      </figure>
     </div>
     <div class="hero-coords">22°54'S · 43°10'W — RIO DE JANEIRO</div>
   </section>
@@ -498,31 +539,68 @@
       <div class="section-head">
         <div>
           <div class="section-tag">O Concurso</div>
-          <h2>Da inscrição ao embarque: as etapas que definem sua vaga.</h2>
+          <h2>Seu caminho até a matrícula na EFOMM.</h2>
         </div>
-        <p>O concurso da EFOMM segue uma sequência própria. Conhecer cada etapa evita surpresas e ajuda a organizar o estudo com antecedência.</p>
+        <p>Um resumo do PS EFOMM/2027, desde os requisitos de ingresso até o início da formação. Datas e regras podem mudar: o edital oficial sempre prevalece.</p>
+      </div>
+
+      <div class="requirements" aria-label="Requisitos básicos do PS EFOMM 2027">
+        <div class="requirement"><strong>17 a 23 anos</strong><span>Idade considerada em 1º de janeiro de 2027.</span></div>
+        <div class="requirement"><strong>Ensino Médio</strong><span>Conclusão exigida até 1º de fevereiro de 2027.</span></div>
+        <div class="requirement"><strong>1,54 m a 2,00 m</strong><span>Faixa de altura prevista para ambos os sexos.</span></div>
+        <div class="requirement"><strong>Dedicação exclusiva</strong><span>Não ter filhos ou dependentes, nem ser casado ou ter união estável, conforme o edital.</span></div>
+      </div>
+
+      <div class="route-title">
+        <div class="section-tag">PS EFOMM/2027</div>
+        <h3>Etapas do processo seletivo</h3>
       </div>
       <div class="route">
         <div class="waypoint">
-          <div class="wp-meta">Etapa 1</div>
-          <h3>Inscrição e edital</h3>
-          <p>Publicação do edital pela Diretoria de Portos e Costas (DPC), com prazos, requisitos e número de vagas por especialidade.</p>
+          <div class="wp-meta">Antes de começar</div>
+          <h3>Leia o edital e escolha o Centro de Instrução</h3>
+          <p>Confira todas as condições e escolha concorrer às vagas do CIAGA, no Rio de Janeiro, ou do CIABA, em Belém. Essa escolha também define as cidades disponíveis para as etapas presenciais.</p>
         </div>
         <div class="waypoint">
-          <div class="wp-meta">Etapa 2</div>
-          <h3>Prova objetiva</h3>
-          <p>Avaliação de conhecimentos em Português, Matemática, Física, Inglês e Redação — a etapa que mais concentra o volume de estudo.</p>
+          <div class="wp-meta">Inscrições · 21/05 a 02/06/2026</div>
+          <h3>Faça a inscrição</h3>
+          <p>Preencha o cadastro pela internet e pague a taxa de R$ 110,00 dentro do prazo. O processo de 2027 oferece 368 vagas, distribuídas entre CIAGA e CIABA.</p>
         </div>
         <div class="waypoint">
-          <div class="wp-meta">Etapa 3</div>
-          <h3>Exame de saúde e teste de aptidão física</h3>
-          <p>Etapas eliminatórias que avaliam condições clínicas e físicas compatíveis com a rotina de bordo e de formação militar.</p>
+          <div class="wp-meta">1ª etapa · 25 e 26/07/2026</div>
+          <h3>Exame de Conhecimentos</h3>
+          <p>As provas escritas são realizadas em dois dias e têm caráter eliminatório e classificatório.</p>
+          <div class="exam-days">
+            <div class="exam-day"><strong>1º dia:</strong> Português, Inglês e Redação.</div>
+            <div class="exam-day"><strong>2º dia:</strong> Matemática e Física.</div>
+          </div>
         </div>
         <div class="waypoint">
-          <div class="wp-meta">Etapa 4</div>
-          <h3>Matrícula e início da formação</h3>
-          <p>Convocação dos aprovados dentro do número de vagas e início do curso na Ilha do Governador, no Rio de Janeiro.</p>
+          <div class="wp-meta">2ª etapa · eliminatória</div>
+          <h3>Seleção Psicofísica</h3>
+          <p>Os candidatos convocados passam por inspeções e exames destinados a verificar as condições de saúde exigidas para a formação e a atividade marítima.</p>
         </div>
+        <div class="waypoint">
+          <div class="wp-meta">3ª etapa · eliminatória</div>
+          <h3>Teste de Suficiência Física</h3>
+          <p>O TSF inclui corrida de 2.400 m e natação de 50 m. Para homens, os limites são 14min30s e 2min; para mulheres, 16min30s e 2min30s, respectivamente.</p>
+        </div>
+        <div class="waypoint">
+          <div class="wp-meta">4ª etapa · 11 a 29/01/2027</div>
+          <h3>Adaptação e verificação de documentos</h3>
+          <p>Os classificados participam do Período de Adaptação em regime de internato e apresentam a documentação exigida. A matrícula e o início do curso estão previstos para 1º de fevereiro de 2027.</p>
+        </div>
+        <div class="waypoint">
+          <div class="wp-meta">Formação</div>
+          <h3>Náutica ou Máquinas</h3>
+          <p>O período acadêmico compreende seis semestres em regime de internato, seguido pelo estágio embarcado. A formação ocorre no CIAGA ou no CIABA.</p>
+        </div>
+      </div>
+
+      <div class="official-links">
+        <a class="btn-primary" href="https://www.marinha.mil.br/ciaga/node/2516" target="_blank" rel="noopener">Acessar o processo oficial</a>
+        <a class="btn-ghost" href="https://www.inscricao.marinha.mil.br/ciaga/index_concursos.jsp?id_concurso=77" target="_blank" rel="noopener">Área de inscrição</a>
+        <p>Resumo baseado no edital do PS EFOMM/2027. Consulte sempre o documento oficial antes de tomar qualquer decisão.</p>
       </div>
     </div>
   </section>
@@ -633,29 +711,33 @@
 
       <div class="partner-panel" id="por">
         <div class="partner-grid">
-          <div class="partner-card">
-            <div class="partner-top">
+          <div class="partner-card featured">
+            <div class="partner-profile">
+              <img class="partner-logo" src="assets/puppin-logo.png" alt="Logo Puppin">
               <div>
-                <div class="partner-name">Escrita de Bordo</div>
-                <div class="partner-kind">Redação · Correção comentada</div>
+                <div class="partner-name">Thaylise Puppin</div>
+                <div class="partner-kind">Redação para EFOMM e concursos da Marinha</div>
+                <p class="partner-desc">Professora especialista em redação para concursos militares, com preparação direcionada às exigências da EFOMM e da Marinha.</p>
               </div>
             </div>
-            <p class="partner-desc">Correção de redações com devolutiva em até 48h e banco de temas prováveis para o edital.</p>
-            <div class="partner-foot">
-              <a class="partner-link" href="#" target="_blank" rel="noopener">Enviar redação</a>
-              <span class="coupon-chip" data-code="ESCRITA15">Cupom ESCRITA15 · copiar</span>
+
+            <div class="course-list" aria-label="Cursos da Thaylise Puppin">
+              <a class="course-link" href="https://pay.kiwify.com.br/OyFUYjX" target="_blank" rel="noopener"><span>EFOMM - Redação</span><span>Kiwify ↗</span></a>
+              <a class="course-link" href="https://pay.kiwify.com.br/XSPCa9Q" target="_blank" rel="noopener"><span>Reta Final EFOMM</span><span>Kiwify ↗</span></a>
+              <a class="course-link" href="https://hotmart.com/pt-br/marketplace/produtos/a-amazonia-azul-nao-e-so-o-mar/Q106234097H" target="_blank" rel="noopener"><span>A Amazônia Azul não é só o mar!</span><span>Hotmart ↗</span></a>
+              <a class="course-link" href="https://pay.kiwify.com.br/GxxPYkC" target="_blank" rel="noopener"><span>Comunidade Puppin - Marinha</span><span>Kiwify ↗</span></a>
+              <a class="course-link" href="https://pay.kiwify.com.br/AAtMRoc" target="_blank" rel="noopener"><span>Só Temas MB</span><span>Kiwify ↗</span></a>
             </div>
-          </div>
-          <div class="partner-card">
-            <div class="partner-top">
-              <div>
-                <div class="partner-name">Gramática Náutica</div>
-                <div class="partner-kind">Curso online · Português</div>
-              </div>
+
+            <div class="coupon-steps" aria-label="Como usar o cupom">
+              <div class="coupon-step"><strong>1. Escolha</strong>Abra qualquer uma das opções acima.</div>
+              <div class="coupon-step"><strong>2. Vá ao pagamento</strong>Avance até o checkout da plataforma.</div>
+              <div class="coupon-step"><strong>3. Aplique o cupom</strong>Digite PLANTEL10 no campo de cupom.</div>
             </div>
-            <p class="partner-desc">Módulos curtos de gramática normativa com foco nos pontos mais cobrados pela banca da EFOMM.</p>
+
             <div class="partner-foot">
-              <a class="partner-link" href="#" target="_blank" rel="noopener">Ver módulos</a>
+              <span>10% de desconto em todas as opções</span>
+              <span class="coupon-chip" data-code="PLANTEL10">Cupom PLANTEL10 · copiar</span>
             </div>
           </div>
         </div>
@@ -801,7 +883,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <h4>EFOMM · PREPARAÇÃO</h4>
+        <h4>PLANTEL DE DÚVIDAS</h4>
         <p style="color:rgba(237,231,216,0.55); max-width:32ch;">Um ponto de apoio para quem estuda para o concurso da Escola de Formação da Marinha Mercante.</p>
       </div>
       <div>
@@ -869,16 +951,6 @@
       menuBtn.setAttribute('aria-expanded', 'false');
     });
   });
-
-  // Compass rotates with scroll progress (single orchestrated motion)
-  var rotor = document.getElementById('rose-rotor');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(rotor && !reduceMotion){
-    window.addEventListener('scroll', function(){
-      var deg = window.scrollY * 0.08;
-      rotor.setAttribute('transform', 'rotate(' + deg + ' 150 150)');
-    }, {passive:true});
-  }
 
   // Tabs
   var tabs = document.querySelectorAll('.tab-btn');
