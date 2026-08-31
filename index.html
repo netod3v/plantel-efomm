@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plantel de Dúvidas — EFOMM · Preparação</title>
+
+<!-- Prévia de link (WhatsApp, Telegram, redes sociais) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Plantel de Dúvidas — EFOMM">
+<meta property="og:description" content="Tire suas dúvidas com quem também estuda para a EFOMM. Entre no plantel oficial de preparação.">
+<meta property="og:image" content="assets/plantel-logo.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1280">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Plantel de Dúvidas — EFOMM">
+<meta name="twitter:description" content="Tire suas dúvidas com quem também estuda para a EFOMM.">
+<meta name="twitter:image" content="assets/plantel-logo.png">
+<link rel="icon" type="image/png" sizes="any" href="assets/plantel-logo.png">
+<link rel="shortcut icon" type="image/png" href="assets/plantel-logo.png">
+<link rel="apple-touch-icon" href="assets/plantel-logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#081527;
+    --navy-900:#0A1B33;
+    --navy-800:#0F2444;
+    --navy-700:#173259;
+    --parchment-100:#F4EFE3;
+    --parchment-50:#FBF8F1;
+    --brass-500:#BE9A46;
+    --brass-400:#D4B466;
+    --brass-700:#8F7230;
+    --signal-500:#C1502E;
+    --signal-600:#A43F22;
+    --ink-900:#14181F;
+    --ink-050:#EDE7D8;
+    --line-on-navy: rgba(237,231,216,0.14);
+    --line-on-parchment: rgba(20,24,31,0.12);
+    --max: 1180px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--parchment-100);
+    color:var(--ink-900);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px;
+  }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  /* Skip link for keyboard users */
+  .skip-link{
+    position:absolute; left:-9999px; top:0;
+    background:var(--brass-500); color:var(--navy-950);
+    padding:12px 18px; z-index:200; font-weight:600;
+  }
+  .skip-link:focus{ left:20px; top:20px; }
+
+  :focus-visible{
+    outline:2px solid var(--brass-500);
+    outline-offset:3px;
+  }
+
+  /* ===== NAV ===== */
+  header.site-nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:transparent;
+    border-bottom:1px solid transparent;
+    transition:background .35s ease, border-color .35s ease;
+  }
+  header.site-nav.solid{
+    background:rgba(8,21,39,0.92);
+    -webkit-backdrop-filter:blur(8px);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-on-navy);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:var(--max); margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
+    color:var(--ink-050); text-decoration:none; letter-spacing:0.01em;
+  }
+  .brand svg{ width:26px; height:26px; flex-shrink:0; }
+
+  nav.links{ display:flex; gap:36px; }
+  nav.links a{
+    color:var(--ink-050); text-decoration:none;
+    font-size:0.95rem; opacity:0.85;
+    padding:6px 2px; border-bottom:1px solid transparent;
+    transition:opacity .2s ease, border-color .2s ease;
+  }
+  nav.links a:hover{ opacity:1; border-color:var(--brass-500); }
+
+  .nav-cta{
+    background:var(--brass-500); color:var(--navy-950);
+    padding:10px 20px; border-radius:2px;
+    font-weight:600; font-size:0.9rem;
+    text-decoration:none; white-space:nowrap;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{ background:var(--brass-400); }
+
+  .menu-btn{
+    display:none; background:none; border:none; cursor:pointer;
+    width:38px; height:38px; padding:0; position:relative;
+  }
+  .menu-btn span{
+    position:absolute; left:8px; right:8px; height:2px; background:var(--ink-050);
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .menu-btn span:nth-child(1){ top:13px; }
+  .menu-btn span:nth-child(2){ top:19px; }
+  .menu-btn span:nth-child(3){ top:25px; }
+  .menu-btn.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+  .menu-btn.open span:nth-child(2){ opacity:0; }
+  .menu-btn.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+
+  @media (max-width:880px){
+    nav.links, .nav-cta.desktop-only{ display:none; }
+    .menu-btn{ display:block; }
+  }
+
+  .mobile-panel{
+    display:none;
+    position:fixed; top:0; right:0; bottom:0; width:min(320px,84vw);
+    background:var(--navy-950); z-index:99;
+    padding:96px 28px 28px;
+    transform:translateX(100%);
+    transition:transform .3s ease;
+    border-left:1px solid var(--line-on-navy);
+  }
+  .mobile-panel.open{ display:block; transform:translateX(0); }
+  .mobile-panel a{
+    display:block; color:var(--ink-050); text-decoration:none;
+    font-family:'Fraunces',serif; font-size:1.3rem; padding:14px 0;
+    border-bottom:1px solid var(--line-on-navy);
+  }
+  .mobile-panel .nav-cta{ display:inline-block; margin-top:24px; }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:radial-gradient(120% 90% at 78% 10%, var(--navy-800) 0%, var(--navy-950) 55%);
+    color:var(--ink-050);
+    padding:168px 0 120px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px; align-items:center;
+  }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+
+  .hero-eyebrow{
+    font-size:0.85rem; color:var(--brass-400);
+    margin-bottom:18px; letter-spacing:0.02em;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.2rem);
+    line-height:1.04;
+    max-width:14ch;
+  }
+  .hero h1 em{ font-style:italic; color:var(--brass-400); }
+  .hero p.lede{
+    margin-top:26px; max-width:46ch;
+    font-size:1.15rem; color:rgba(237,231,216,0.82);
+  }
+  .hero-actions{ margin-top:38px; display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--brass-500); color:var(--navy-950);
+    padding:15px 28px; border-radius:2px; text-decoration:none;
+    font-weight:600; display:inline-block; border:1px solid var(--brass-500);
+    transition:background .2s ease;
+  }
+  .btn-primary:hover{ background:var(--brass-400); }
+  .btn-ghost{
+    padding:15px 28px; border-radius:2px; text-decoration:none;
+    font-weight:500; display:inline-block; color:var(--ink-050);
+    border:1px solid var(--line-on-navy);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .btn-ghost:hover{ border-color:var(--brass-500); background:rgba(190,154,70,0.08); }
+
+  .compass-wrap{ display:flex; justify-content:center; }
+  #compass{ width:min(340px, 90%); transform-origin:50% 50%; }
+
+  .hero-coords{
+    position:absolute; bottom:22px; left:32px;
+    font-size:0.78rem; color:rgba(237,231,216,0.45);
+    letter-spacing:0.03em;
+  }
+
+  /* ===== SECTION SCAFFOLDING ===== */
+  section{ padding:104px 0; }
+  .section-head{
+    display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:end;
+    margin-bottom:56px;
+    border-bottom:1px solid var(--line-on-parchment);
+    padding-bottom:28px;
+  }
+  @media (max-width:760px){ .section-head{ grid-template-columns:1fr; } }
+  .section-tag{
+    font-size:0.85rem; color:var(--brass-700); margin-bottom:10px;
+  }
+  .section-head h2{ font-size:clamp(1.8rem,3vw,2.5rem); max-width:16ch; }
+  .section-head p{ font-size:1.02rem; color:rgba(20,24,31,0.68); max-width:44ch; }
+
+  section.on-navy{
+    background:var(--navy-950); color:var(--ink-050);
+  }
+  section.on-navy .section-head{ border-color:var(--line-on-navy); }
+  section.on-navy .section-tag{ color:var(--brass-400); }
+  section.on-navy .section-head p{ color:rgba(237,231,216,0.68); }
+
+  /* ===== O CONCURSO — waypoints ===== */
+  .route{ position:relative; padding-left:36px; }
+  .route::before{
+    content:''; position:absolute; left:9px; top:8px; bottom:8px;
+    width:1px; background:var(--line-on-parchment);
+  }
+  .waypoint{ position:relative; padding:0 0 40px; }
+  .waypoint:last-child{ padding-bottom:0; }
+  .waypoint::before{
+    content:''; position:absolute; left:-36px; top:4px;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--parchment-100); border:2px solid var(--brass-500);
+  }
+  .waypoint h3{ font-size:1.2rem; margin-bottom:6px; }
+  .waypoint p{ margin:0; color:rgba(20,24,31,0.72); max-width:60ch; }
+  .waypoint .wp-meta{ font-size:0.85rem; color:var(--brass-700); margin-bottom:4px; }
+
+  /* ===== DISCIPLINAS ===== */
+  .subjects{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line-on-navy);
+    border:1px solid var(--line-on-navy);
+  }
+  @media (max-width:820px){ .subjects{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .subjects{ grid-template-columns:1fr; } }
+  .subject-cell{
+    background:var(--navy-950); padding:30px 26px; min-height:170px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .subject-cell .num{ font-family:'Fraunces',serif; font-size:0.95rem; color:var(--brass-400); }
+  .subject-cell h3{ font-size:1.15rem; margin-top:18px; }
+  .subject-cell p{ font-size:0.9rem; color:rgba(237,231,216,0.62); margin-top:8px; }
+
+  /* ===== PARCEIROS (tabs por disciplina) ===== */
+  .tabs{
+    display:flex; gap:8px; flex-wrap:wrap; margin-bottom:40px;
+    border-bottom:1px solid var(--line-on-parchment);
+    padding-bottom:0;
+  }
+  .tab-btn{
+    background:none; border:none; cursor:pointer;
+    font-family:'Work Sans',sans-serif; font-size:0.95rem; font-weight:500;
+    padding:12px 4px; margin-right:22px; color:rgba(20,24,31,0.55);
+    border-bottom:2px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .tab-btn:hover{ color:var(--ink-900); }
+  .tab-btn[aria-selected="true"]{
+    color:var(--ink-900); border-bottom-color:var(--brass-500);
+  }
+  .partner-panel{ display:none; }
+  .partner-panel.active{ display:block; }
+  .partner-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+    background:var(--line-on-parchment); border:1px solid var(--line-on-parchment);
+  }
+  @media (max-width:760px){ .partner-grid{ grid-template-columns:1fr; } }
+  .partner-card{
+    background:var(--parchment-50); padding:30px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .partner-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+  .partner-name{ font-family:'Fraunces',serif; font-size:1.15rem; }
+  .partner-kind{ font-size:0.78rem; color:var(--brass-700); }
+  .partner-desc{ font-size:0.92rem; color:rgba(20,24,31,0.7); flex-grow:1; }
+  .partner-foot{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+  .partner-link{
+    font-size:0.9rem; font-weight:600; text-decoration:none;
+    color:var(--ink-900); border-bottom:1px solid var(--brass-500);
+  }
+  .coupon-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy-950); color:var(--ink-050);
+    padding:6px 12px; border-radius:2px; font-size:0.8rem;
+    cursor:pointer; border:1px dashed var(--brass-500);
+    font-family:'Work Sans',sans-serif;
+  }
+  .coupon-chip:hover{ background:var(--navy-800); }
+  .coupon-chip.copied{ border-color:var(--signal-500); color:var(--signal-500); }
+
+  /* ===== CUPONS DESTAQUE ===== */
+  .coupon-strip{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line-on-navy); border:1px solid var(--line-on-navy);
+  }
+  @media (max-width:820px){ .coupon-strip{ grid-template-columns:1fr; } }
+  .coupon-big{
+    background:var(--navy-950); padding:34px 28px;
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .coupon-big .pct{ font-family:'Fraunces',serif; font-size:2.4rem; color:var(--brass-400); }
+  .coupon-big .who{ font-size:0.95rem; color:var(--ink-050); }
+  .coupon-big .code-row{ display:flex; align-items:center; gap:10px; margin-top:auto; }
+  .coupon-code{
+    font-family:'Work Sans',sans-serif; font-weight:600; letter-spacing:0.04em;
+    background:rgba(237,231,216,0.08); padding:8px 12px; border-radius:2px;
+    border:1px solid var(--line-on-navy); font-size:0.85rem; color:var(--ink-050);
+  }
+  .copy-btn{
+    background:var(--signal-500); color:var(--ink-050); border:none;
+    padding:8px 14px; border-radius:2px; font-size:0.8rem; cursor:pointer;
+    font-weight:600; transition:background .2s ease;
+  }
+  .copy-btn:hover{ background:var(--signal-600); }
+  .copy-btn.done{ background:var(--brass-500); color:var(--navy-950); }
+
+  /* ===== PLANTEL DE DÚVIDAS ===== */
+  .plantel-box{
+    background:var(--navy-950); color:var(--ink-050);
+    padding:56px; border-radius:2px;
+    display:flex; align-items:center; gap:36px; flex-wrap:wrap;
+    justify-content:space-between;
+  }
+  .plantel-left{ display:flex; align-items:center; gap:22px; }
+  .plantel-logo{
+    width:76px; height:76px; border-radius:16px; flex-shrink:0;
+    background:linear-gradient(135deg, var(--navy-800), var(--navy-700));
+    padding:8px;
+  }
+  .plantel-logo img{ width:100%; height:100%; object-fit:contain; }
+  .plantel-left h2{ font-size:clamp(1.5rem,2.6vw,2rem); }
+  .plantel-left p{ margin-top:8px; color:rgba(237,231,216,0.7); max-width:44ch; font-size:0.98rem; }
+
+  /* ===== CTA FINAL ===== */
+  .cta-final{
+    background:var(--parchment-100);
+    text-align:left;
+    padding:100px 0;
+  }
+  .cta-box{
+    background:var(--navy-950); color:var(--ink-050);
+    padding:64px 56px; display:flex; justify-content:space-between;
+    align-items:center; gap:40px; flex-wrap:wrap;
+    border-radius:2px;
+  }
+  .cta-box h2{ font-size:clamp(1.7rem,3vw,2.3rem); max-width:16ch; }
+  .cta-box p{ color:rgba(237,231,216,0.7); margin-top:12px; max-width:42ch; }
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--navy-950); color:rgba(237,231,216,0.6);
+    padding:64px 0 32px; font-size:0.9rem;
+  }
+  .footer-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px;
+    padding-bottom:40px; border-bottom:1px solid var(--line-on-navy);
+  }
+  @media (max-width:760px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+  .footer-grid h4{
+    font-family:'Work Sans',sans-serif; font-size:0.82rem; color:var(--brass-400);
+    margin-bottom:16px; font-weight:600;
+  }
+  .footer-grid a{ display:block; text-decoration:none; color:rgba(237,231,216,0.6); padding:6px 0; }
+  .footer-grid a:hover{ color:var(--ink-050); }
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
+    padding-top:24px; gap:8px 24px;
+    font-size:0.8rem; color:rgba(237,231,216,0.4);
+  }
+  .footer-bottom strong{ color:rgba(237,231,216,0.6); font-weight:600; }
+
+  .back-to-top{
+    position:fixed; right:24px; bottom:24px; z-index:900;
+    width:44px; height:44px; border:1px solid rgba(237,231,216,0.22);
+    border-radius:4px; background:var(--brass-500); color:var(--navy-950);
+    font-size:1.35rem; line-height:1; cursor:pointer;
+    display:grid; place-items:center;
+    opacity:0; visibility:hidden; transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease, visibility .2s ease, background .2s ease;
+    box-shadow:0 6px 18px rgba(0,0,0,0.2);
+  }
+  .back-to-top.visible{ opacity:1; visibility:visible; transform:translateY(0); }
+  .back-to-top:hover{ background:var(--brass-400); }
+  .back-to-top:focus-visible{ outline:3px solid var(--ink-050); outline-offset:3px; }
+  @media (max-width:600px){ .back-to-top{ right:16px; bottom:16px; } }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+<header class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="12" r="10.5" stroke="#BE9A46" stroke-width="1.2"/>
+        <path d="M12 3.5 L13.4 10.6 L20.5 12 L13.4 13.4 L12 20.5 L10.6 13.4 L3.5 12 L10.6 10.6 Z" fill="#BE9A46"/>
+      </svg>
+      EFOMM · Preparação
+    </a>
+    <nav class="links" aria-label="Navegação principal">
+      <a href="#concurso">O Concurso</a>
+      <a href="#disciplinas">Disciplinas</a>
+      <a href="#parceiros">Parceiros</a>
+      <a href="#cupons">Cupons</a>
+      <a href="#plantel">Plantel de Dúvidas</a>
+    </nav>
+    <a class="nav-cta desktop-only" href="#plantel">Entrar no Plantel</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#concurso">O Concurso</a>
+  <a href="#disciplinas">Disciplinas</a>
+  <a href="#parceiros">Parceiros</a>
+  <a href="#cupons">Cupons</a>
+  <a href="#plantel">Plantel de Dúvidas</a>
+  <a class="nav-cta" href="#plantel">Entrar no Plantel</a>
+</div>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="hero-eyebrow">Escola de Formação da Marinha Mercante</div>
+        <h1>A rota certa até o <em>convés</em> da EFOMM.</h1>
+        <p class="lede">Um ponto de partida único para quem se prepara para o concurso: disciplinas organizadas, parceiros por área e os cupons certos na hora certa — sem se perder no meio do caminho.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#parceiros">Encontrar parceiros</a>
+          <a class="btn-ghost" href="#concurso">Entender o concurso</a>
+        </div>
+      </div>
+      <div class="compass-wrap">
+        <svg id="compass" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="150" cy="150" r="128" stroke="#BE9A46" stroke-width="1" fill="none" opacity="0.55"/>
+          <circle cx="150" cy="150" r="96" stroke="#BE9A46" stroke-width="1" fill="none" opacity="0.35"/>
+          <g stroke="#BE9A46" stroke-width="0.6" opacity="0.4">
+            <line x1="150" y1="22" x2="150" y2="278"/>
+            <line x1="22" y1="150" x2="278" y2="150"/>
+            <line x1="58" y1="58" x2="242" y2="242"/>
+            <line x1="242" y1="58" x2="58" y2="242"/>
+          </g>
+          <g id="rose-rotor">
+            <path d="M150 40 L162 150 L150 260 L138 150 Z" fill="#D4B466"/>
+            <path d="M40 150 L150 138 L260 150 L150 162 Z" fill="#8F7230"/>
+            <path d="M150 40 L150 150 L260 150 Z" fill="#EDE7D8" opacity="0.85"/>
+            <circle cx="150" cy="150" r="7" fill="#EDE7D8"/>
+          </g>
+          <text x="150" y="30" text-anchor="middle" fill="#EDE7D8" font-family="Work Sans" font-size="13">N</text>
+          <text x="150" y="278" text-anchor="middle" fill="#EDE7D8" font-family="Work Sans" font-size="13">S</text>
+          <text x="14" y="155" text-anchor="middle" fill="#EDE7D8" font-family="Work Sans" font-size="13">O</text>
+          <text x="286" y="155" text-anchor="middle" fill="#EDE7D8" font-family="Work Sans" font-size="13">L</text>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-coords">22°54'S · 43°10'W — RIO DE JANEIRO</div>
+  </section>
+
+  <section id="concurso">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-tag">O Concurso</div>
+          <h2>Da inscrição ao embarque: as etapas que definem sua vaga.</h2>
+        </div>
+        <p>O concurso da EFOMM segue uma sequência própria. Conhecer cada etapa evita surpresas e ajuda a organizar o estudo com antecedência.</p>
+      </div>
+      <div class="route">
+        <div class="waypoint">
+          <div class="wp-meta">Etapa 1</div>
+          <h3>Inscrição e edital</h3>
+          <p>Publicação do edital pela Diretoria de Portos e Costas (DPC), com prazos, requisitos e número de vagas por especialidade.</p>
+        </div>
+        <div class="waypoint">
+          <div class="wp-meta">Etapa 2</div>
+          <h3>Prova objetiva</h3>
+          <p>Avaliação de conhecimentos em Português, Matemática, Física, Inglês e Redação — a etapa que mais concentra o volume de estudo.</p>
+        </div>
+        <div class="waypoint">
+          <div class="wp-meta">Etapa 3</div>
+          <h3>Exame de saúde e teste de aptidão física</h3>
+          <p>Etapas eliminatórias que avaliam condições clínicas e físicas compatíveis com a rotina de bordo e de formação militar.</p>
+        </div>
+        <div class="waypoint">
+          <div class="wp-meta">Etapa 4</div>
+          <h3>Matrícula e início da formação</h3>
+          <p>Convocação dos aprovados dentro do número de vagas e início do curso na Ilha do Governador, no Rio de Janeiro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="disciplinas" class="on-navy">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-tag">Disciplinas</div>
+          <h2>O que cai na prova, em seis frentes de estudo.</h2>
+        </div>
+        <p>Cada disciplina tem peso e cobrança diferentes. Use essa base para priorizar o que preparar primeiro.</p>
+      </div>
+      <div class="subjects">
+        <div class="subject-cell">
+          <span class="num">01</span>
+          <div>
+            <h3>Matemática</h3>
+            <p>Maior peso da prova. Álgebra, geometria e trigonometria aparecem de forma recorrente.</p>
+          </div>
+        </div>
+        <div class="subject-cell">
+          <span class="num">02</span>
+          <div>
+            <h3>Português</h3>
+            <p>Interpretação de texto, gramática normativa e literatura em proporções equilibradas.</p>
+          </div>
+        </div>
+        <div class="subject-cell">
+          <span class="num">03</span>
+          <div>
+            <h3>Física</h3>
+            <p>Mecânica, ondulatória e eletromagnetismo — base direta para as disciplinas técnicas do curso.</p>
+          </div>
+        </div>
+        <div class="subject-cell">
+          <span class="num">04</span>
+          <div>
+            <h3>Inglês</h3>
+            <p>Leitura técnica e compreensão de texto, essencial também para a vida a bordo.</p>
+          </div>
+        </div>
+        <div class="subject-cell">
+          <span class="num">05</span>
+          <div>
+            <h3>Redação</h3>
+            <p>Dissertação argumentativa, com critérios objetivos de estrutura e coesão.</p>
+          </div>
+        </div>
+        <div class="subject-cell">
+          <span class="num">06</span>
+          <div>
+            <h3>Atualidades</h3>
+            <p>Temas de geopolítica marítima, Marinha do Brasil e conjuntura nacional.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="parceiros">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-tag">Parceiros</div>
+          <h2>Apoio para cada disciplina, organizado por rota.</h2>
+        </div>
+        <p>Cursos, materiais e mentorias selecionados e agrupados por área — para não perder tempo procurando o que já existe pronto.</p>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Disciplinas dos parceiros">
+        <button class="tab-btn" role="tab" aria-selected="true" data-target="mat">Matemática</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-target="por">Português</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-target="fis">Física</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-target="ing">Inglês</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-target="ger">Preparação Geral</button>
+      </div>
+
+      <div class="partner-panel active" id="mat">
+        <div class="partner-grid">
+          <div class="partner-card">
+            <div class="partner-top">
+              <div>
+                <div class="partner-name">Curso Rumo Exato</div>
+                <div class="partner-kind">Videoaulas · Matemática para EFOMM</div>
+              </div>
+            </div>
+            <p class="partner-desc">Trilha completa de álgebra, geometria e trigonometria com listas de exercícios no padrão da banca.</p>
+            <div class="partner-foot">
+              <a class="partner-link" href="#" target="_blank" rel="noopener">Acessar curso</a>
+              <span class="coupon-chip" data-code="RUMOEXATO10">Cupom RUMOEXATO10 · copiar</span>
+            </div>
+          </div>
+          <div class="partner-card">
+            <div class="partner-top">
+              <div>
+                <div class="partner-name">Mentoria Bússola</div>
+                <div class="partner-kind">Mentoria individual · Matemática</div>
+              </div>
+            </div>
+            <p class="partner-desc">Acompanhamento semanal com correção de exercícios e plano de estudo ajustado ao seu ritmo.</p>
+            <div class="partner-foot">
+              <a class="partner-link" href="#" target="_blank" rel="noopener">Agendar conversa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="partner-panel" id="por">
+        <div class="partner-grid">
+          <div class="partner-card">
+            <div class="partner-top">
+              <div>
+                <div class="partner-name">Escrita de Bordo</div>
+                <div class="partner-kind">Redação · Correção comentada</div>
+              </div>
+            </div>
+            <p class="partner-desc">Correção de redações com devolutiva em até 48h e banco de temas prováveis para o edital.</p>
+            <div class="partner-foot">
+              <a class="partner-link" href="#" target="_blank" rel="noopener">Enviar redação</a>
+              <span class="coupon-chip" data-code="ESCRITA15">Cupom ESCRITA15 · copiar</span>
+            </div>
+          </div>
+          <div class="partner-card">
+            <div class="partner-top">
+              <div>
+                <div class="partner-name">Gramática Náutica</div>
+                <div class="partner-kind">Curso online · Português</div>
+              </div>
+            </div>
+            <p class="partner-desc">Módulos curtos de gramática normativa com foco nos pontos mais cobrados pela banca da EFOMM.</p>
+            <div class="partner-foot">
+              <a class="partner-link" href="#" target="_blank" rel="noopener">Ver módulos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="partner-panel" id="fis">
+        <div class="partner-grid">
+          <div class="partner-card">
+            <div class="partner-top">
+              <div>
+                <div class="partner-name">Física de Convés</div>
+                <div class="partner-kind">Videoaulas · Física aplicada</div>
+              </div>
+            </div>
+            <p class="partner-desc">Mecânica e eletromagnetismo explicados a partir de situações reais de bordo.</p>
+            <div class="partner-foot">
+              <a class="partner-link" href="#" target="_blank" rel="noopener">Acessar curso</a>
+              <span class="coupon-chip" data-code="CONVES20">Cupom CONVES20 · copiar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="partner-panel" id="ing">
+        <div class="partner-grid">
+          <div class="partner-card">
+            <div class="partner-top">
+              <div>
+                <div class="partner-name">English Aboard</div>
+                <div class="partner-kind">Inglês técnico · Leitura e interpretação</div>
+              </div>
+            </div>
+            <p class="partner-desc">Foco em leitura técnica e vocabulário marítimo, no formato exigido pela prova.</p>
+            <div class="partner-foot">
+              <a class="partner-link" href="#" target="_blank" rel="noopener">Começar agora</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="partner-panel" id="ger">
+        <div class="partner-grid">
+          <div class="partner-card">
+            <div class="partner-top">
+              <div>
+                <div class="partner-name">Cursinho Farol</div>
+                <div class="partner-kind">Preparatório completo · Todas as disciplinas</div>
+              </div>
+            </div>
+            <p class="partner-desc">Turma fechada para EFOMM com simulados mensais no formato oficial da prova.</p>
+            <div class="partner-foot">
+              <a class="partner-link" href="#" target="_blank" rel="noopener">Conhecer turma</a>
+              <span class="coupon-chip" data-code="FAROL30">Cupom FAROL30 · copiar</span>
+            </div>
+          </div>
+          <div class="partner-card">
+            <div class="partner-top">
+              <div>
+                <div class="partner-name">Preparação Física EFOMM</div>
+                <div class="partner-kind">TAF · Treinamento orientado</div>
+              </div>
+            </div>
+            <p class="partner-desc">Plano de treino específico para o teste de aptidão física exigido na segunda etapa.</p>
+            <div class="partner-foot">
+              <a class="partner-link" href="#" target="_blank" rel="noopener">Ver plano</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plantel">
+    <div class="wrap">
+      <div class="plantel-box">
+        <div class="plantel-left">
+          <div class="plantel-logo">
+            <img src="assets/plantel-logo.png" alt="Logo do Plantel de Dúvidas">
+          </div>
+          <div>
+            <h2>Plantel de Dúvidas</h2>
+            <p>O grupo oficial de apoio da EFOMM · Preparação. Tire dúvidas de disciplina, edital e rotina de estudo com quem também está na mesma rota.</p>
+          </div>
+        </div>
+        <a class="btn-primary" href="#" target="_blank" rel="noopener">Entrar no Plantel</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="cupons" class="on-navy">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-tag">Cupons em destaque</div>
+          <h2>Os descontos ativos nesta semana.</h2>
+        </div>
+        <p>Códigos válidos direto com os parceiros. Copie e aplique no checkout de cada curso.</p>
+      </div>
+      <div class="coupon-strip">
+        <div class="coupon-big">
+          <div class="pct">30%</div>
+          <div class="who">Cursinho Farol — preparatório completo</div>
+          <div class="code-row">
+            <span class="coupon-code">FAROL30</span>
+            <button class="copy-btn" data-code="FAROL30">Copiar</button>
+          </div>
+        </div>
+        <div class="coupon-big">
+          <div class="pct">20%</div>
+          <div class="who">Física de Convés — videoaulas</div>
+          <div class="code-row">
+            <span class="coupon-code">CONVES20</span>
+            <button class="copy-btn" data-code="CONVES20">Copiar</button>
+          </div>
+        </div>
+        <div class="coupon-big">
+          <div class="pct">15%</div>
+          <div class="who">Escrita de Bordo — correção de redação</div>
+          <div class="code-row">
+            <span class="coupon-code">ESCRITA15</span>
+            <button class="copy-btn" data-code="ESCRITA15">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="wrap">
+      <div class="cta-box">
+        <div>
+          <h2>Pronto para traçar sua rota até a EFOMM?</h2>
+          <p>Fale com a equipe para indicar o parceiro certo para o seu momento de estudo.</p>
+        </div>
+        <a class="btn-primary" href="#" target="_blank" rel="noopener">Falar com a equipe</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>EFOMM · PREPARAÇÃO</h4>
+        <p style="color:rgba(237,231,216,0.55); max-width:32ch;">Um ponto de apoio para quem estuda para o concurso da Escola de Formação da Marinha Mercante.</p>
+      </div>
+      <div>
+        <h4>Navegar</h4>
+        <a href="#concurso">O Concurso</a>
+        <a href="#disciplinas">Disciplinas</a>
+        <a href="#parceiros">Parceiros</a>
+        <a href="#plantel">Plantel de Dúvidas</a>
+      </div>
+      <div>
+        <h4>Recursos</h4>
+        <a href="#cupons">Cupons ativos</a>
+        <a href="#" target="_blank" rel="noopener">Edital oficial (DPC)</a>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <a class="social-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=planteldeduvidas@gmail.com&amp;su=Contato%20-%20Plantel%20de%20D%C3%BAvidas" target="_blank" rel="noopener">
+          <div><span>planteldeduvidas@gmail.com</span></div>
+        </a>
+        <a class="social-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=plantelduvidas@gmail.com&amp;su=Contato%20-%20Plantel%20de%20D%C3%BAvidas" target="_blank" rel="noopener">
+          <div><span>plantelduvidas@gmail.com</span></div>
+        </a>
+        <a href="https://www.instagram.com/planteldeduvidas/">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Plantel de Dúvidas. Todos os direitos reservados.</span>
+      <strong>Desenvolvido pela Equipe de TI/Desenvolvimento - Plantel Labs</strong>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo" title="Voltar ao topo">&uarr;</button>
+
+<script>
+(function(){
+  // Nav solid on scroll
+  var nav = document.getElementById('siteNav');
+  var backToTop = document.getElementById('backToTop');
+  function onScroll(){
+    if(window.scrollY > 40){ nav.classList.add('solid'); }
+    else{ nav.classList.remove('solid'); }
+    backToTop.classList.toggle('visible', window.scrollY > 400);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  backToTop.addEventListener('click', function(){
+    var behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    window.scrollTo({top:0, behavior:behavior});
+  });
+
+  // Mobile menu
+  var menuBtn = document.getElementById('menuBtn');
+  var panel = document.getElementById('mobilePanel');
+  menuBtn.addEventListener('click', function(){
+    var isOpen = panel.classList.toggle('open');
+    menuBtn.classList.toggle('open', isOpen);
+    menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  panel.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      panel.classList.remove('open');
+      menuBtn.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Compass rotates with scroll progress (single orchestrated motion)
+  var rotor = document.getElementById('rose-rotor');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(rotor && !reduceMotion){
+    window.addEventListener('scroll', function(){
+      var deg = window.scrollY * 0.08;
+      rotor.setAttribute('transform', 'rotate(' + deg + ' 150 150)');
+    }, {passive:true});
+  }
+
+  // Tabs
+  var tabs = document.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('.partner-panel');
+  tabs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabs.forEach(function(b){ b.setAttribute('aria-selected','false'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      btn.setAttribute('aria-selected','true');
+      document.getElementById(btn.dataset.target).classList.add('active');
+    });
+  });
+
+  // Copy coupon codes
+  function copyCode(code, el, doneText, doneClass){
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(code).catch(function(){});
+    }
+    var original = el.textContent;
+    el.textContent = doneText;
+    el.classList.add(doneClass);
+    setTimeout(function(){
+      el.textContent = original;
+      el.classList.remove(doneClass);
+    }, 1800);
+  }
+  document.querySelectorAll('.coupon-chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      copyCode(chip.dataset.code, chip, 'Copiado ✓', 'copied');
+    });
+  });
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      copyCode(btn.dataset.code, btn, 'Copiado', 'done');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
