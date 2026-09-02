@@ -855,6 +855,13 @@
       padding: 8px;
     }
 
+    .partner-logo.fenix-logo,
+    .partner-logo.jp-logo {
+      background: #000;
+      border-color: #000;
+      padding: 7px;
+    }
+
     .course-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -896,6 +903,10 @@
       background: var(--line-on-parchment);
     }
 
+    .coupon-steps.single {
+      grid-template-columns: 1fr;
+    }
+
     .coupon-step {
       background: var(--parchment-50);
       padding: 14px;
@@ -934,9 +945,94 @@
       border: 1px solid var(--line-on-navy);
     }
 
+    .coupon-strip.carousel-ready {
+      display: block;
+      overflow: hidden;
+    }
+
+    .coupon-track {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      width: 200%;
+      gap: 1px;
+      background: var(--line-on-navy);
+      animation: coupon-carousel 18s linear infinite;
+      will-change: transform;
+    }
+
+    .coupon-strip:hover .coupon-track,
+    .coupon-strip:focus-within .coupon-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes coupon-carousel {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .coupon-controls {
+      display: none;
+    }
+
     @media (max-width:820px) {
       .coupon-strip {
         grid-template-columns: 1fr;
+      }
+
+      .coupon-track {
+        width: 600%;
+      }
+
+      .coupon-strip.mobile-carousel .coupon-track {
+        animation: none;
+        transform: translateX(0);
+        transition: transform .55s cubic-bezier(.25, .46, .45, .94);
+      }
+
+      .coupon-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .coupon-dots {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .coupon-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: rgba(237, 231, 216, 0.35);
+        transition: width .25s ease, background .25s ease;
+      }
+
+      .coupon-dot.active {
+        width: 25px;
+        background: var(--brass-400);
+      }
+
+      .coupon-play-toggle {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line-on-navy);
+        border-radius: 50%;
+        background: transparent;
+        color: var(--ink-050);
+        font-size: .85rem;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .coupon-play-toggle:hover {
+        border-color: var(--brass-400);
+        color: var(--brass-400);
       }
     }
 
@@ -1102,6 +1198,30 @@
       color: var(--brass-400);
       margin-bottom: 16px;
       font-weight: 600;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      flex-shrink: 0;
+      transform: translateY(4px);
+    }
+
+    .footer-brand h4 {
+      margin-bottom: 0;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      line-height: 1;
+      transform: translateY(-5px);
     }
 
     .footer-grid a {
@@ -1482,23 +1602,14 @@
               </div>
 
               <div class="course-list" aria-label="Cursos da Thaylise Puppin">
-                <a class="course-link" href="https://pay.kiwify.com.br/OyFUYjX" target="_blank"
-                  rel="noopener"><span>EFOMM - Redação</span><span>Kiwify ↗</span></a>
-                <a class="course-link" href="https://pay.kiwify.com.br/XSPCa9Q" target="_blank"
-                  rel="noopener"><span>Reta Final EFOMM</span><span>Kiwify ↗</span></a>
-                <a class="course-link"
-                  href="https://hotmart.com/pt-br/marketplace/produtos/a-amazonia-azul-nao-e-so-o-mar/Q106234097H"
-                  target="_blank" rel="noopener"><span>A Amazônia Azul não é só o mar!</span><span>Hotmart ↗</span></a>
-                <a class="course-link" href="https://pay.kiwify.com.br/GxxPYkC" target="_blank"
-                  rel="noopener"><span>Comunidade Puppin - Marinha</span><span>Kiwify ↗</span></a>
-                <a class="course-link" href="https://pay.kiwify.com.br/AAtMRoc" target="_blank" rel="noopener"><span>Só
-                    Temas MB</span><span>Kiwify ↗</span></a>
+                <a class="course-link" href="https://pay.kiwify.com.br/OyFUYjX?afid=1vBM9oo8" target="_blank"
+                  rel="noopener"><span>EFOMM - Turma 2</span><span>Kiwify ↗</span></a>
+                <a class="course-link" href="https://pay.kiwify.com.br/ctsiQfg?afid=W5fMhBRq" target="_blank"
+                  rel="noopener"><span>Clube da Redação (Mensal)</span><span>Kiwify ↗</span></a>
               </div>
 
-              <div class="coupon-steps" aria-label="Como usar o cupom">
-                <div class="coupon-step"><strong>1. Escolha</strong>Abra qualquer uma das opções acima.</div>
-                <div class="coupon-step"><strong>2. Vá ao pagamento</strong>Avance até o checkout da plataforma.</div>
-                <div class="coupon-step"><strong>3. Aplique o cupom</strong>Digite PLANTEL10 no campo de cupom.</div>
+              <div class="coupon-steps single" aria-label="Como usar o cupom">
+                <div class="coupon-step"><strong>Tem um cupom de desconto?</strong>No checkout, clique nessa opção e digite PLANTEL10.</div>
               </div>
 
               <div class="partner-foot">
@@ -1512,16 +1623,16 @@
         <div class="partner-panel" id="fis">
           <div class="partner-grid">
             <div class="partner-card">
-              <div class="partner-top">
+              <div class="partner-profile">
+                <img class="partner-logo jp-logo" src="assets/jp-militares-logo.png" alt="Logo do JP Militares">
                 <div>
-                  <div class="partner-name">Cursinho 2</div>
-                  <div class="partner-kind">Videoaulas · Física aplicada</div>
+                  <div class="partner-name">JP Militares</div>
+                  <div class="partner-kind">Grupo gratuito · Física</div>
+                  <p class="partner-desc">Grupo gratuito para estudantes que querem reforçar Física e acompanhar conteúdos voltados à preparação militar.</p>
                 </div>
               </div>
-              <p class="partner-desc">.</p>
               <div class="partner-foot">
-                <a class="partner-link" href="#" target="_blank" rel="noopener">Acessar curso</a>
-                <span class="coupon-chip" data-code="CONVES20">Cupom CONVES20 · copiar</span>
+                <a class="partner-link" href="https://chat.whatsapp.com/DFre6T6TjbnGxSiY6zM0jS?s=cl&amp;p=a&amp;mlu=4" target="_blank" rel="noopener">Entrar no grupo</a>
               </div>
             </div>
           </div>
@@ -1547,29 +1658,21 @@
         <div class="partner-panel" id="ger">
           <div class="partner-grid">
             <div class="partner-card">
-              <div class="partner-top">
+              <div class="partner-profile">
+                <img class="partner-logo fenix-logo" src="assets/fenix-logo.png" alt="Logo do Fênix">
                 <div>
-                  <div class="partner-name">Cursinho 1</div>
-                  <div class="partner-kind">.</div>
+                  <div class="partner-name">Fênix</div>
+                  <div class="partner-kind">Preparação geral · EFOMM</div>
+                  <p class="partner-desc">Preparação integrada para quem busca organizar os estudos e avançar em todas as frentes da prova da EFOMM.</p>
                 </div>
               </div>
-              <p class="partner-desc">.</p>
-              <div class="partner-foot">
-                <a class="partner-link" href="#" target="_blank" rel="noopener">Conhecer turma</a>
-                <span class="coupon-chip" data-code="FAROL30">Cupom FAROL30 · copiar</span>
+              <div class="coupon-steps" aria-label="Como usar o cupom Fênix">
+                <div class="coupon-step"><strong>1. Escolha</strong>Abra qualquer uma das opções de cursos ou mentorias.</div>
+                <div class="coupon-step"><strong>2. Vá ao pagamento</strong>Avance até o checkout da plataforma.</div>
+                <div class="coupon-step"><strong>3. Aplique o cupom</strong>Digite PLANTEL10 no campo de cupom.</div>
               </div>
-            </div>
-            <div class="partner-card">
-              <div class="partner-top">
-                <div>
-                  <div class="partner-name">Cursinho 2</div>
-                  <div class="partner-kind">.</div>
-                </div>
-              </div>
-              <p class="partner-desc">Plano de treino específico para o teste de aptidão física exigido na segunda
-                etapa.</p>
               <div class="partner-foot">
-                <a class="partner-link" href="#" target="_blank" rel="noopener">Ver plano</a>
+                <span class="coupon-chip" data-code="PLANTEL10">Cupom PLANTEL10 · copiar</span>
               </div>
             </div>
           </div>
@@ -1651,7 +1754,10 @@
     <div class="wrap">
       <div class="footer-grid">
         <div>
-          <h4>PLANTEL DE DÚVIDAS</h4>
+          <div class="footer-brand">
+            <img src="assets/plantel-logo-gold.png" alt="Logo do Plantel de Dúvidas">
+            <h4>PLANTEL DE DÚVIDAS</h4>
+          </div>
           <p style="color:rgba(237,231,216,0.55); max-width:32ch;">Um ponto de apoio para quem estuda para o concurso da
             Escola de Formação da Marinha Mercante.</p>
         </div>
@@ -1754,6 +1860,108 @@
           document.getElementById(btn.dataset.target).classList.add('active');
         });
       });
+
+      // Automatic coupon carousel
+      var couponStrip = document.querySelector('.coupon-strip');
+      if (couponStrip && !reduceMotion) {
+        var couponCards = Array.from(couponStrip.children);
+        var couponTrack = document.createElement('div');
+        couponTrack.className = 'coupon-track';
+        couponCards.forEach(function (card) { couponTrack.appendChild(card); });
+        couponCards.forEach(function (card) {
+          var clone = card.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          clone.querySelectorAll('button, a, [tabindex]').forEach(function (control) {
+            control.setAttribute('tabindex', '-1');
+          });
+          couponTrack.appendChild(clone);
+        });
+        couponStrip.appendChild(couponTrack);
+        couponStrip.classList.add('carousel-ready');
+
+        if (window.matchMedia('(max-width: 820px)').matches) {
+          couponStrip.classList.add('mobile-carousel');
+
+          var carouselControls = document.createElement('div');
+          carouselControls.className = 'coupon-controls';
+          carouselControls.setAttribute('aria-label', 'Controles do carrossel de cupons');
+
+          var carouselDots = document.createElement('div');
+          carouselDots.className = 'coupon-dots';
+          carouselDots.setAttribute('aria-hidden', 'true');
+          var dotElements = couponCards.map(function (_, dotIndex) {
+            var dot = document.createElement('span');
+            dot.className = 'coupon-dot' + (dotIndex === 0 ? ' active' : '');
+            carouselDots.appendChild(dot);
+            return dot;
+          });
+
+          var playToggle = document.createElement('button');
+          playToggle.className = 'coupon-play-toggle';
+          playToggle.type = 'button';
+          playToggle.textContent = 'Ⅱ';
+          playToggle.setAttribute('aria-label', 'Pausar carrossel');
+          playToggle.title = 'Pausar carrossel';
+
+          carouselControls.appendChild(carouselDots);
+          carouselControls.appendChild(playToggle);
+          couponStrip.insertAdjacentElement('afterend', carouselControls);
+
+          var carouselIndex = 0;
+          var carouselPaused = false;
+          var carouselTimer;
+
+          function updateCarouselDots() {
+            dotElements.forEach(function (dot, dotIndex) {
+              dot.classList.toggle('active', dotIndex === carouselIndex % couponCards.length);
+            });
+          }
+
+          function advanceCarousel() {
+            carouselIndex += 1;
+            couponTrack.style.transform = 'translateX(-' + (carouselIndex * 16.6667) + '%)';
+            updateCarouselDots();
+          }
+
+          function startCarousel() {
+            clearInterval(carouselTimer);
+            carouselTimer = setInterval(advanceCarousel, 4500);
+          }
+
+          couponTrack.addEventListener('transitionend', function () {
+            if (carouselIndex === couponCards.length) {
+              couponTrack.style.transition = 'none';
+              carouselIndex = 0;
+              couponTrack.style.transform = 'translateX(0)';
+              couponTrack.offsetWidth;
+              couponTrack.style.transition = '';
+              updateCarouselDots();
+            }
+          });
+
+          playToggle.addEventListener('click', function () {
+            carouselPaused = !carouselPaused;
+            if (carouselPaused) {
+              clearInterval(carouselTimer);
+              playToggle.textContent = '▶';
+              playToggle.setAttribute('aria-label', 'Retomar carrossel');
+              playToggle.title = 'Retomar carrossel';
+            } else {
+              startCarousel();
+              playToggle.textContent = 'Ⅱ';
+              playToggle.setAttribute('aria-label', 'Pausar carrossel');
+              playToggle.title = 'Pausar carrossel';
+            }
+          });
+
+          document.addEventListener('visibilitychange', function () {
+            if (document.hidden) clearInterval(carouselTimer);
+            else if (!carouselPaused) startCarousel();
+          });
+
+          startCarousel();
+        }
+      }
 
       // Copy coupon codes
       function copyCode(code, el, doneText, doneClass) {
