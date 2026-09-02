@@ -839,6 +839,57 @@
       gap: 22px;
     }
 
+    .partner-invite {
+      margin-top: 40px;
+      padding: 28px 0;
+      border-top: 1px solid var(--line-on-parchment);
+      border-bottom: 1px solid var(--line-on-parchment);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .partner-invite-copy {
+      max-width: 650px;
+    }
+
+    .partner-invite-label {
+      color: var(--brass-700);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .partner-invite h3 {
+      color: var(--ink-900);
+      font-size: 1.35rem;
+    }
+
+    .partner-invite p {
+      margin-top: 6px;
+      color: rgba(20, 24, 31, 0.7);
+      font-size: 0.92rem;
+    }
+
+    .partner-invite .btn-primary {
+      flex: 0 0 auto;
+    }
+
+    @media (max-width:680px) {
+      .partner-invite {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .partner-invite .btn-primary {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
     .partner-profile {
       display: flex;
       align-items: center;
@@ -1694,6 +1745,15 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="partner-invite">
+          <div class="partner-invite-copy">
+            <div class="partner-invite-label">Parcerias</div>
+            <h3>Quer fazer parte dos nossos parceiros?</h3>
+            <p>Se você oferece cursos, materiais ou mentorias para a preparação da EFOMM, fale com a nossa equipe para apresentar seu trabalho.</p>
+          </div>
+          <a class="btn-primary" href="https://api.whatsapp.com/send?phone=5524999216327&amp;text=Ol%C3%A1%2C%20tenho%20interesse%20em%20ser%20parceiro%20do%20Plantel%20de%20D%C3%BAvidas." target="_blank" rel="noopener noreferrer">Quero ser parceiro</a>
         </div>
       </div>
     </section>
