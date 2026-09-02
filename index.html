@@ -670,11 +670,22 @@
       transition: transform .22s ease, background .22s ease, box-shadow .22s ease;
     }
 
-    .subject-cell:hover {
-      z-index: 2;
-      transform: scale(1.025);
-      background: var(--navy-900);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3), inset 0 0 0 1px var(--brass-500);
+    @media (hover:hover) {
+      .subject-cell:hover {
+        z-index: 2;
+        transform: scale(1.025);
+        background: var(--navy-900);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3), inset 0 0 0 1px var(--brass-500);
+      }
+    }
+
+    @media (max-width:520px) {
+      .subject-cell.is-scroll-active {
+        z-index: 2;
+        transform: scale(1.025);
+        background: var(--navy-900);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3), inset 0 0 0 1px var(--brass-500);
+      }
     }
 
     .subject-cell .num {
@@ -1910,6 +1921,33 @@
         }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
         revealBlocks.forEach(function (block) { revealObserver.observe(block); });
       }
+
+      // Highlight the subject currently being read on small screens
+      var subjectCells = Array.from(document.querySelectorAll('.subject-cell'));
+      var subjectMedia = window.matchMedia('(max-width: 520px)');
+      var subjectObserver = null;
+
+      function setUpSubjectHighlight() {
+        if (subjectObserver) {
+          subjectObserver.disconnect();
+          subjectObserver = null;
+        }
+        subjectCells.forEach(function (cell) { cell.classList.remove('is-scroll-active'); });
+
+        if (!subjectMedia.matches || !('IntersectionObserver' in window)) return;
+
+        subjectObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            entry.target.classList.toggle('is-scroll-active', entry.isIntersecting);
+          });
+        }, { threshold: 0.01, rootMargin: '-38% 0px -38% 0px' });
+
+        subjectCells.forEach(function (cell) { subjectObserver.observe(cell); });
+      }
+
+      setUpSubjectHighlight();
+      if (subjectMedia.addEventListener) subjectMedia.addEventListener('change', setUpSubjectHighlight);
+      else subjectMedia.addListener(setUpSubjectHighlight);
 
       // Mobile menu
       var menuBtn = document.getElementById('menuBtn');
