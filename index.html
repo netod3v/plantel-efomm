@@ -1442,10 +1442,19 @@
       transform: translateY(0);
     }
 
-    @media (max-width:600px) {
+    @media (max-width:1080px) {
       .back-to-top {
         right: 16px;
-        bottom: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+      }
+
+      body.menu-open .back-to-top {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
       }
     }
 
@@ -2018,7 +2027,8 @@
       function onScroll() {
         if (window.scrollY > 40) { nav.classList.add('solid'); }
         else { nav.classList.remove('solid'); }
-        backToTop.classList.toggle('visible', window.scrollY > 400);
+        var backToTopOffset = window.matchMedia('(max-width: 1080px)').matches ? 180 : 400;
+        backToTop.classList.toggle('visible', window.scrollY > backToTopOffset);
       }
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
