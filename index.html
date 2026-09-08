@@ -65,6 +65,11 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    body.menu-open {
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+
     h1,
     h2,
     h3,
@@ -242,43 +247,37 @@
       background: none;
       border: none;
       cursor: pointer;
-      width: 38px;
-      height: 38px;
+      width: 28px;
+      height: 28px;
       padding: 0;
       position: relative;
     }
 
     .menu-btn span {
       position: absolute;
-      left: 8px;
-      right: 8px;
-      height: 2px;
+      left: 4px;
+      width: 20px;
+      height: 1.5px;
+      top: 50%;
       background: var(--ink-050);
-      transition: transform .25s ease, opacity .25s ease;
+      transform-origin: center;
+      transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .menu-btn span:nth-child(1) {
-      top: 13px;
+      transform: translateY(-4px);
     }
 
     .menu-btn span:nth-child(2) {
-      top: 19px;
-    }
-
-    .menu-btn span:nth-child(3) {
-      top: 25px;
+      transform: translateY(4px);
     }
 
     .menu-btn.open span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
+      transform: rotate(45deg);
     }
 
     .menu-btn.open span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-btn.open span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
+      transform: rotate(-45deg);
     }
 
     @media (max-width:1080px) {
@@ -292,41 +291,71 @@
         display: block;
       }
 
+      .nav-inner {
+        min-height: calc(48px + env(safe-area-inset-top));
+        padding: calc(8px + env(safe-area-inset-top)) 24px 8px;
+      }
+
+      .mobile-panel {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100dvh;
+        z-index: 99;
+        padding: calc(48px + env(safe-area-inset-top) + 32px) 36px 36px;
+        flex-direction: column;
+        align-items: flex-start;
+        background: var(--navy-950);
+        border: 0;
+        transform: none;
+        clip-path: inset(0 0 100% 0);
+        visibility: hidden;
+        pointer-events: none;
+        transition: clip-path 380ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 380ms;
+      }
+
+      .mobile-panel.open {
+        clip-path: inset(0);
+        visibility: visible;
+        pointer-events: auto;
+        transition: clip-path 420ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+      }
+
+      .mobile-panel a {
+        width: 100%;
+        color: var(--ink-050);
+        text-decoration: none;
+        font-family: 'Work Sans', sans-serif;
+        font-size: clamp(1.6rem, 6vw, 2rem);
+        font-weight: 600;
+        padding: 10px 0;
+        border-bottom: 0;
+        opacity: 0;
+        transform: translateY(-14px);
+        transition: opacity 280ms ease, transform 280ms ease;
+      }
+
+      .mobile-panel.open a {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-panel.open a:nth-child(1) { transition-delay: 80ms; }
+      .mobile-panel.open a:nth-child(2) { transition-delay: 125ms; }
+      .mobile-panel.open a:nth-child(3) { transition-delay: 170ms; }
+      .mobile-panel.open a:nth-child(4) { transition-delay: 215ms; }
+
     }
 
     .mobile-panel {
       display: none;
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: min(320px, 84vw);
-      background: var(--navy-950);
-      z-index: 99;
-      padding: 96px 28px 28px;
-      transform: translateX(100%);
-      transition: transform .3s ease;
-      border-left: 1px solid var(--line-on-navy);
     }
 
-    .mobile-panel.open {
-      display: block;
-      transform: translateX(0);
-    }
-
-    .mobile-panel a {
-      display: block;
-      color: var(--ink-050);
-      text-decoration: none;
-      font-family: 'Fraunces', serif;
-      font-size: 1.3rem;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--line-on-navy);
-    }
-
-    .mobile-panel .nav-cta {
-      display: inline-flex;
-      margin-top: 24px;
+    @media (max-width:1080px) {
+      .mobile-panel {
+        display: flex;
+      }
     }
 
     /* ===== HERO ===== */
@@ -334,7 +363,7 @@
       position: relative;
       background: radial-gradient(120% 90% at 78% 10%, var(--navy-800) 0%, var(--navy-950) 55%);
       color: var(--ink-050);
-      padding: 168px 0 120px;
+      padding: 132px 0 104px;
       overflow: hidden;
     }
 
@@ -346,6 +375,10 @@
     }
 
     @media (max-width:900px) {
+      .hero {
+        padding: 96px 0 80px;
+      }
+
       .hero-grid {
         grid-template-columns: 1fr;
       }
@@ -1445,28 +1478,25 @@
         <span class="brand-label">Plantel de Dúvidas</span>
       </a>
       <nav class="links" aria-label="Navegação principal">
-        <a href="#plantel">Sobre o Plantel</a>
-        <a class="community-nav-link" href="#comunidades">Comunidades</a>
-        <a href="#redes-sociais">Redes Sociais</a>
-        <a href="#concurso">Concursos e cupons</a>
+        <a href="#concurso">O Concurso</a>
+        <a href="#disciplinas">Disciplinas</a>
         <a href="#parceiros">Parceiros</a>
+        <a href="#plantel">Plantel de Dúvidas</a>
       </nav>
       <div class="nav-actions">
         <a class="nav-cta desktop-only" href="https://chat.whatsapp.com/KMwYVUctbqh1sPtlhcs3ip?mode=ac_t" target="_blank" rel="noopener noreferrer">Entrar no Plantel</a>
       </div>
-      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobilePanel">
+        <span></span><span></span>
       </button>
     </div>
   </header>
 
-  <div class="mobile-panel" id="mobilePanel">
-    <a href="#plantel">Sobre o Plantel</a>
-    <a class="community-nav-link" href="#comunidades">Comunidades</a>
-    <a href="#redes-sociais">Redes Sociais</a>
-    <a href="#concurso">Concursos e cupons</a>
+  <div class="mobile-panel" id="mobilePanel" aria-hidden="true">
+    <a href="#concurso">O Concurso</a>
+    <a href="#disciplinas">Disciplinas</a>
     <a href="#parceiros">Parceiros</a>
-    <a class="nav-cta" href="https://chat.whatsapp.com/KMwYVUctbqh1sPtlhcs3ip?mode=ac_t" target="_blank" rel="noopener noreferrer">Entrar no Plantel</a>
+    <a href="#plantel">Plantel de Dúvidas</a>
   </div>
 
   <main id="main">
@@ -2045,17 +2075,44 @@
       // Mobile menu
       var menuBtn = document.getElementById('menuBtn');
       var panel = document.getElementById('mobilePanel');
-      menuBtn.addEventListener('click', function () {
-        var isOpen = panel.classList.toggle('open');
+
+      function setMenuOpen(isOpen, returnFocus) {
+        panel.classList.toggle('open', isOpen);
         menuBtn.classList.toggle('open', isOpen);
         menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuBtn.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+        panel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+        document.body.classList.toggle('menu-open', isOpen);
+
+        if (isOpen) {
+          window.setTimeout(function () {
+            var firstLink = panel.querySelector('a');
+            if (firstLink) firstLink.focus();
+          }, reduceMotion ? 0 : 420);
+        } else if (returnFocus) {
+          menuBtn.focus();
+        }
+      }
+
+      menuBtn.addEventListener('click', function () {
+        setMenuOpen(!panel.classList.contains('open'), false);
       });
       panel.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () {
-          panel.classList.remove('open');
-          menuBtn.classList.remove('open');
-          menuBtn.setAttribute('aria-expanded', 'false');
+          setMenuOpen(false, false);
         });
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && panel.classList.contains('open')) {
+          setMenuOpen(false, true);
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 1080 && panel.classList.contains('open')) {
+          setMenuOpen(false, false);
+        }
       });
 
       // Tabs
@@ -2067,18 +2124,6 @@
           panels.forEach(function (p) { p.classList.remove('active'); });
           btn.setAttribute('aria-selected', 'true');
           document.getElementById(btn.dataset.target).classList.add('active');
-        });
-      });
-
-      document.querySelectorAll('.community-nav-link').forEach(function (link) {
-        link.addEventListener('click', function (event) {
-          event.preventDefault();
-          var generalTab = document.querySelector('.tab-btn[data-target="ger"]');
-          if (generalTab) generalTab.click();
-          window.setTimeout(function () {
-            var communities = document.getElementById('comunidades');
-            if (communities) communities.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-          }, 40);
         });
       });
 
