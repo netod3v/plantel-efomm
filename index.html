@@ -1446,9 +1446,13 @@
       .back-to-top {
         right: 16px;
         bottom: calc(16px + env(safe-area-inset-bottom));
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        border-radius: 4px;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
       }
 
       body.menu-open .back-to-top {
