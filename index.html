@@ -161,6 +161,7 @@
     }
 
     .nav-back {
+      text-decoration: none;
       width: 32px;
       height: 32px;
       display: grid;
@@ -1567,7 +1568,7 @@
   <header class="site-nav" id="siteNav">
     <div class="nav-inner">
       <div class="nav-start">
-        <button class="nav-back" id="navBack" type="button" aria-label="Voltar para a pagina anterior" title="Voltar" hidden>&#8592;</button>
+        <a class="nav-back" id="navBack" href="https://planteldeduvidas.com.br/" aria-label="Voltar ao Plantel" title="Voltar ao Plantel">&#8592;</a>
       <a class="brand" href="#top">
         <span class="brand-logo" aria-hidden="true"><img src="assets/plantel-logo-nav.png" alt=""></span>
         <span class="brand-label">Plantel de Dúvidas</span>
@@ -2110,9 +2111,9 @@
     (function () {
       // Nav solid on scroll
       var nav = document.getElementById('siteNav');
-      var navBack = document.getElementById('navBack');
+
       var backToTop = document.getElementById('backToTop');
-      navBack.hidden = !(document.referrer || window.history.length > 1);
+
       function onScroll() {
         if (window.scrollY > 40) { nav.classList.add('solid'); }
         else { nav.classList.remove('solid'); }
@@ -2125,16 +2126,6 @@
       backToTop.addEventListener('click', function () {
         var behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
         window.scrollTo({ top: 0, behavior: behavior });
-      });
-
-      navBack.addEventListener('click', function () {
-        if (window.history.length > 1) {
-          window.history.back();
-        } else if (document.referrer) {
-          window.location.assign(document.referrer);
-        } else {
-          window.location.hash = 'top';
-        }
       });
 
       // Reveal section content as it enters the viewport
